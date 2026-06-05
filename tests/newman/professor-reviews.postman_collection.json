@@ -1,0 +1,189 @@
+{
+  "info": {
+    "name": "Claustrum: Professor Reviews",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://claustrum.maugp.com"
+    },
+    {
+      "key": "professorId",
+      "value": "1"
+    },
+    {
+      "key": "courseCode",
+      "value": "IC1802"
+    },
+    {
+      "key": "turnstileToken",
+      "value": "manual-token"
+    }
+  ],
+  "item": [
+    {
+      "name": "Enviar reseña válida",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/professor-reviews/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "professor-reviews",
+            ""
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"El profesor explica con claridad y responde preguntas durante la clase.\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\", \"Brinda apoyo\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('La respuesta debe ser 200 o 400 por Turnstile en ambiente de prueba', function () {",
+              "  pm.expect([200, 400]).to.include(pm.response.code);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rechazar campos obligatorios vacíos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/professor-reviews/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "professor-reviews",
+            ""
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"professorId\": \"\",\n  \"courseCode\": \"\",\n  \"comment\": \"\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"engagementLevel\": 5,\n  \"tags\": [],\n  \"turnstileToken\": \"\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('La API rechaza payload inválido', function () {",
+              "  pm.expect(pm.response.code).to.eql(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entrada XSS en comentario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/professor-reviews/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "professor-reviews",
+            ""
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"<script>alert('xss')</script>\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('La respuesta no debe ejecutar contenido de script', function () {",
+              "  pm.expect([200, 400]).to.include(pm.response.code);",
+              "  pm.expect(pm.response.text()).to.not.include(\"<script>alert('xss')</script>\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entrada SQL Injection en comentario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/professor-reviews/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "professor-reviews",
+            ""
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"' OR '1'='1\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('La respuesta no debe exponer errores SQL', function () {",
+              "  pm.expect([200, 400]).to.include(pm.response.code);",
+              "  pm.expect(pm.response.text().toLowerCase()).to.not.include('syntax error');",
+              "  pm.expect(pm.response.text().toLowerCase()).to.not.include('sql');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
