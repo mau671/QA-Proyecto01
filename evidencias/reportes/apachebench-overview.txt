@@ -1,0 +1,44 @@
+This is ApacheBench, Version 2.3 <$Revision: 1923142 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking claustrum.maugp.com (be patient).....done
+
+
+Server Software:        cloudflare
+Server Hostname:        claustrum.maugp.com
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.3,TLS_AES_256_GCM_SHA384,256,256
+TLS Server Name:        claustrum.maugp.com
+
+Document Path:          /overview
+Document Length:        8322 bytes
+
+Concurrency Level:      3
+Time taken for tests:   4.022 seconds
+Complete requests:      30
+Failed requests:        0
+Total transferred:      273076 bytes
+HTML transferred:       249660 bytes
+Requests per second:    7.46 [#/sec] (mean)
+Time per request:       402.189 [ms] (mean)
+Time per request:       134.063 [ms] (mean, across all concurrent requests)
+Transfer rate:          66.31 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:      145  149   4.6    148     166
+Processing:   212  217   3.3    216     226
+Waiting:      203  208   3.2    208     217
+Total:        359  366   5.8    365     382
+
+Percentage of the requests served within a certain time (ms)
+  50%    365
+  66%    366
+  75%    371
+  80%    372
+  90%    372
+  95%    380
+  98%    382
+  99%    382
+ 100%    382 (longest request)

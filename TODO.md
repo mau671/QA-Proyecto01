@@ -46,23 +46,23 @@
 **Requisito funcional:** `RF-M1: El usuario autenticado puede crear, guardar y cargar un horario académico.`  
 **Requisito no funcional:** `RNF-M1: El panel de resumen debe cargar en menos de 2 segundos en una conexión normal.`
 
-- [ ] Ejecutar `CP-M-001`: iniciar sesión y entrar a la ruta schedule.
-- [ ] Ejecutar `CP-M-002`: agregar un curso/grupo al horario.
-- [ ] Ejecutar `CP-M-003`: guardar horario y verificar persistencia.
-- [ ] Ejecutar `CP-M-004`: cargar horario guardado después de recargar la página.
-- [ ] Ejecutar `CP-M-005`: validar el panel de resumen con Lighthouse.
-- [ ] Ejecutar `CP-M-006`: probar selección inválida o conflicto de horario.
-- [ ] Ejecutar prueba de carga ligera en la ruta overview o ruta schedule con JMeter.
-- [ ] Ejecutar prueba unitaria con Vitest sobre lógica utilitaria relacionada con calendario u horarios.
-- [ ] Ejecutar prueba de aceptación de usuario sobre el flujo de creación de horario.
-- [ ] Ejecutar revisión estática de `src/components/schedule/`.
-- [ ] Ejecutar revisión estática de `src/components/calendar/`.
-- [ ] Revisar `src/lib/calendar-utils.ts` para complejidad, duplicación y legibilidad.
-- [ ] Automatizar con Playwright el flujo `login: schedule: agregar grupo: guardar`.
-- [ ] Guardar evidencias de cada caso en `evidencias/mauricio/`.
-- [ ] Registrar defectos `DEF-M-*` si aparecen.
-- [ ] Actualizar resultados de `CP-M-001` a `CP-M-009`.
-- [ ] Redactar resultados de la ruta schedule y la ruta overview en `docs/informe-final.md`.
+- [x] Ejecutar `CP-M-001`: iniciar sesión y entrar a la ruta schedule.
+- [x] Ejecutar `CP-M-002`: agregar un curso/grupo al horario.
+- [x] Ejecutar `CP-M-003`: guardar horario y verificar persistencia.
+- [x] Ejecutar `CP-M-004`: cargar horario guardado después de recargar la página.
+- [x] Ejecutar `CP-M-005`: validar el panel de resumen con Lighthouse y Performance.
+- [x] Ejecutar `CP-M-006`: probar selección inválida o conflicto de horario.
+- [x] Ejecutar prueba de carga ligera en la ruta overview con ApacheBench.
+- [x] Ejecutar prueba unitaria con Vitest sobre lógica utilitaria relacionada con calendario u horarios.
+- [x] Ejecutar prueba de aceptación de usuario sobre el flujo de creación de horario.
+- [x] Ejecutar revisión estática de `src/components/schedule/`.
+- [x] Ejecutar revisión estática de `src/components/calendar/`.
+- [x] Revisar `src/lib/calendar-utils.ts` para complejidad, duplicación y legibilidad.
+- [x] Automatizar y ejecutar con Playwright el flujo `login: schedule: agregar grupo: guardar`.
+- [x] Guardar evidencias de cada caso en `evidencias/mauricio/`.
+- [x] Registrar defectos `DEF-M-*` si aparecen.
+- [x] Actualizar resultados de `CP-M-001` a `CP-M-009`.
+- [x] Redactar resultados de la ruta schedule y la ruta overview en `docs/informe-final.md`.
 
 ## Isaac Jiménez: ruta professors y API de reseñas
 

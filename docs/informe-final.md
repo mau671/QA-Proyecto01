@@ -64,29 +64,29 @@ Se aplicó una estrategia combinada de pruebas estáticas, dinámicas, funcional
 | Playwright | Pruebas E2E |
 | Postman/Newman | Pruebas API |
 | Lighthouse | Rendimiento y accesibilidad |
-| JMeter | Carga ligera |
+| ApacheBench | Carga ligera sobre rutas principales |
 
 ## 7. Casos de prueba
 
-Resumen pendiente de completar con base en `docs/casos-de-prueba.md`.
+Se ejecutaron los casos `CP-M-001` a `CP-M-009` para las rutas schedule y overview. Los nueve casos fueron aprobados y cuentan con evidencia en capturas, reportes de herramientas y una ejecución Playwright aprobada.
 
 ## 8. Matriz de trazabilidad
 
-Resumen pendiente de completar con base en `docs/matriz-de-trazabilidad.md`.
+Los requisitos `RF-M1` y `RNF-M1` quedaron cubiertos por casos funcionales, integración, sistema, negativo, unitario, UAT, rendimiento y carga ligera. Ambos requisitos fueron aprobados en las pruebas ejecutadas a la fecha.
 
 ## 9. Gestión de defectos
 
-Resumen pendiente de completar con base en `docs/defectos.md`.
+No se registraron defectos en las pruebas actuales. Los comportamientos observados en schedule y overview coincidieron con los resultados esperados.
 
 ## 10. Resultados por módulo
 
 ### Ruta schedule: creador de horarios
 
-Pendiente.
+Se accedió al creador de horarios con el usuario demo, se seleccionó el grupo `MA0101-01`, se visualizó en el calendario, se abrió el diálogo de guardado, se registró el horario como `Horario QA Mauricio Diurno 2026-06-06` y se verificó su aparición en la lista de horarios guardados. La aplicación también evitó conflictos de horario al deshabilitar grupos con traslape.
 
 ### Ruta overview: panel de resumen
 
-Pendiente.
+La ruta overview cargó correctamente para el usuario autenticado. La traza de Performance registró LCP de 1633 ms y CLS de 0.04, cumpliendo el umbral definido para `RNF-M1`.
 
 ### Ruta professors: reseñas de profesores
 
@@ -108,32 +108,32 @@ Pendiente.
 
 | Métrica | Resultado | Estado |
 |---------|-----------|--------|
-| Complejidad ciclomática | Pendiente | Pendiente |
-| Duplicación observable | Pendiente | Pendiente |
-| Cobertura de pruebas | Pendiente | Pendiente |
-| Tiempo de carga del panel de resumen | Pendiente | Pendiente |
-| Accesibilidad Lighthouse | Pendiente | Pendiente |
+| Complejidad ciclomática | Sin hallazgos bloqueantes en revisión estática de schedule, calendar y `calendar-utils.ts` | Aprobado para rutas evaluadas |
+| Duplicación observable | No se detectó duplicación bloqueante en la revisión del alcance evaluado | Aprobado para rutas evaluadas |
+| Cobertura de pruebas | 4 pruebas unitarias de lógica de calendario y 1 flujo Playwright aprobado | Aprobado para rutas evaluadas |
+| Tiempo de carga del panel de resumen | LCP de 1633 ms en Performance | Aprobado |
+| Accesibilidad Lighthouse | 100 en ruta overview | Aprobado |
 | Seguridad de entradas | Pendiente | Pendiente |
 
 ## 12. Evaluación de deuda técnica
 
-Pendiente.
+En las pruebas actuales no se observaron defectos bloqueantes. La revisión estática con oxlint no reportó hallazgos en los componentes schedule, calendar ni en `calendar-utils.ts`. Como deuda técnica potencial queda revisar oportunidades de optimización de renderizado, ya que la traza atribuye la mayor parte del LCP a demora de renderizado.
 
 ## 13. Análisis de riesgos
 
-Pendiente.
+El riesgo principal es depender de datos externos o cambiantes del periodo académico: si cambian cursos, grupos o disponibilidad, las pruebas E2E pueden requerir actualización de datos. También existe riesgo de que el flujo de guardado dependa del usuario demo y de horarios previamente almacenados.
 
 ## 14. Análisis de resultados
 
-Pendiente.
+Los resultados muestran que el flujo principal del creador de horarios funciona de forma estable para usuario autenticado. La persistencia de horarios se validó manualmente, la lógica de calendario se cubrió con pruebas unitarias y la ruta overview cumplió el objetivo de carga observado.
 
 ## 15. Conclusiones
 
-Pendiente.
+En las pruebas ejecutadas a la fecha, Claustrum cumple los requisitos evaluados: creación, guardado y carga de horarios, manejo preventivo de conflictos y carga aceptable del panel de resumen.
 
 ## 16. Recomendaciones
 
-Pendiente.
+Mantener datos de prueba estables para automatización E2E, ejecutar periódicamente la traza de Performance en overview y revisar la demora de renderizado detectada en el desglose de LCP.
 
 ## 17. Anexos
 

@@ -52,8 +52,8 @@ Ejecutar un proceso de aseguramiento de calidad sobre los módulos seleccionados
 | Pruebas de aceptación de usuario | Checklist manual | Todos |
 | Pruebas de API | Postman + Newman | Isaac |
 | Pruebas de seguridad | Manual + Postman | Isaac, Armando |
-| Pruebas de rendimiento | Lighthouse | Mauricio |
-| Pruebas de carga | JMeter | Mauricio |
+| Pruebas de rendimiento | Lighthouse + Performance | Mauricio |
+| Pruebas de carga | ApacheBench | Mauricio |
 | Pruebas de usabilidad | Checklist manual + Lighthouse | Armando |
 
 ## 5. Recursos necesarios

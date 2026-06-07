@@ -1,0 +1,12 @@
+
+ RUN  v4.1.8 /home/mau/Dev/tec/qa/QA-Proyecto01
+
+ ✓ tests/vitest/calendar-utils.test.ts > calendar-utils > convierte hora y día en una fecha dentro de la semana indicada 1ms
+ ✓ tests/vitest/calendar-utils.test.ts > calendar-utils > detecta choque cuando dos grupos tienen sesiones traslapadas el mismo día 0ms
+ ✓ tests/vitest/calendar-utils.test.ts > calendar-utils > no marca choque cuando los horarios no se traslapan 0ms
+ ✓ tests/vitest/calendar-utils.test.ts > calendar-utils > genera identificadores estables para curso y grupo 0ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  21:40:40
+   Duration  664ms (transform 23ms, setup 0ms, import 578ms, tests 3ms, environment 0ms)

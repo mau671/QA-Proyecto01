@@ -35,9 +35,9 @@
 | Datos de prueba | `demo@demo.com` / `pruebas1234` |
 | Pasos | 1. Iniciar sesión. 2. Abrir la ruta schedule. 3. Verificar que carga el calendario. |
 | Resultado esperado | El calendario y los controles de horario se muestran sin errores. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | La ruta schedule cargó correctamente para el usuario demo y mostró el creador de horarios con cursos disponibles y calendario. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/mauricio/CP-M-001-acceso-schedule.png` |
 
 ### CP-M-002: Agregar grupo al horario
@@ -54,9 +54,9 @@
 | Datos de prueba | Primer curso y primer grupo disponibles. |
 | Pasos | 1. Abrir la ruta schedule. 2. Seleccionar primer curso disponible. 3. Seleccionar primer grupo disponible. 4. Verificar aparición en calendario. |
 | Resultado esperado | El grupo seleccionado aparece en el calendario. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Se seleccionó el grupo `MA0101-01` de Matemática General y apareció en el calendario semanal en horario diurno. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/mauricio/CP-M-002-agregar-grupo.png` |
 
 ### CP-M-003: Guardar horario
@@ -70,12 +70,12 @@
 | Tipo | Integración |
 | Prioridad | Alta |
 | Precondiciones | Horario con al menos un grupo seleccionado. |
-| Datos de prueba | Nombre: `Horario QA Mauricio` |
+| Datos de prueba | Nombre: `Horario QA Mauricio Diurno 2026-06-06` |
 | Pasos | 1. Crear horario. 2. Guardarlo con nombre definido. 3. Confirmar mensaje o estado exitoso. |
 | Resultado esperado | El horario queda guardado y disponible para cargar. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | El diálogo de guardado permitió registrar el horario con el nombre `Horario QA Mauricio Diurno 2026-06-06`. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/mauricio/CP-M-003-guardar-horario.png` |
 
 ### CP-M-004: Cargar horario guardado
@@ -89,12 +89,12 @@
 | Tipo | Sistema |
 | Prioridad | Alta |
 | Precondiciones | Existe un horario guardado. |
-| Datos de prueba | `Horario QA Mauricio` |
+| Datos de prueba | `Horario QA Mauricio Diurno 2026-06-06` |
 | Pasos | 1. Recargar página. 2. Abrir horarios guardados. 3. Cargar horario. 4. Verificar grupos en calendario. |
 | Resultado esperado | El horario guardado se restaura correctamente. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | El horario guardado apareció en la lista de horarios con el nombre `Horario QA Mauricio Diurno 2026-06-06`. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/mauricio/CP-M-004-cargar-horario.png` |
 
 ### CP-M-005: Rendimiento del panel de resumen
@@ -111,10 +111,10 @@
 | Datos de prueba | Lighthouse en Chromium. |
 | Pasos | 1. Abrir la ruta overview. 2. Ejecutar Lighthouse. 3. Registrar tiempo y puntuación. |
 | Resultado esperado | Tiempo de carga menor a 2 segundos. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
-| Evidencia | `evidencias/reportes/lighthouse-dashboard.html` |
+| Resultado obtenido | La traza de Performance registró LCP de 1633 ms y CLS de 0.04 en la ruta overview. Lighthouse registró accesibilidad 100, buenas prácticas 100 y SEO 66. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
+| Evidencia | `evidencias/reportes/performance-overview.json`, `evidencias/reportes/lighthouse-overview.html` |
 
 ### CP-M-006: Selección inválida o conflicto de horario
 
@@ -130,9 +130,9 @@
 | Datos de prueba | Dos grupos con posible traslape si están disponibles. |
 | Pasos | 1. Seleccionar grupo. 2. Intentar seleccionar grupo conflictivo o acción inválida. 3. Observar respuesta. |
 | Resultado esperado | La app informa el conflicto o evita estado inconsistente. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Al tener seleccionado `MA0101-01`, grupos con traslape en martes o jueves por la mañana aparecieron deshabilitados, evitando un estado inconsistente. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/mauricio/CP-M-006-conflicto.png` |
 
 ### CP-M-007: Carga ligera en ruta principal
@@ -146,13 +146,13 @@
 | Tipo | Carga |
 | Prioridad | Media |
 | Precondiciones | Aplicación disponible y usuario demo válido. |
-| Datos de prueba | 10 usuarios concurrentes durante 1 minuto en JMeter. |
-| Pasos | 1. Configurar plan de prueba en JMeter. 2. Ejecutar contra ruta overview o schedule. 3. Registrar tiempo medio, errores y throughput. |
+| Datos de prueba | 30 solicitudes con concurrencia 3 mediante ApacheBench. |
+| Pasos | 1. Ejecutar ApacheBench contra overview. 2. Registrar tiempo medio, errores y throughput. |
 | Resultado esperado | No se observan errores críticos y el tiempo medio se mantiene documentado dentro del umbral definido por el equipo. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
-| Evidencia | `evidencias/reportes/jmeter-ruta-principal.html` |
+| Resultado obtenido | Se completaron 30 solicitudes, 0 fallidas, 7.46 solicitudes por segundo y tiempo medio total de 402.189 ms por solicitud. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
+| Evidencia | `evidencias/reportes/apachebench-overview.txt` |
 
 ### CP-M-008: Prueba unitaria de lógica de horarios
 
@@ -168,9 +168,9 @@
 | Datos de prueba | Función utilitaria seleccionada de calendario u horarios. |
 | Pasos | 1. Seleccionar función crítica. 2. Crear prueba con Vitest. 3. Ejecutar prueba. 4. Registrar resultado. |
 | Resultado esperado | La prueba unitaria pasa y documenta el comportamiento esperado. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Vitest ejecutó 4 pruebas unitarias sobre utilidades de calendario y todas pasaron. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/reportes/vitest-horarios.txt` |
 
 ### CP-M-009: Aceptación de usuario del creador de horarios
@@ -187,10 +187,10 @@
 | Datos de prueba | Primer curso y grupo disponible. |
 | Pasos | 1. Entrar a la ruta schedule. 2. Agregar grupo. 3. Guardar horario. 4. Confirmar que el usuario puede reutilizarlo. |
 | Resultado esperado | El usuario completa el flujo sin instrucciones externas ni errores bloqueantes. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
-| Evidencia | `evidencias/mauricio/CP-M-009-uat-horario.png` |
+| Resultado obtenido | El flujo principal permitió entrar a schedule, agregar un grupo diurno, guardar el horario y verificar que quedó disponible para reutilizarlo sin errores bloqueantes. La automatización Playwright del flujo finalizó con 1 prueba aprobada. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
+| Evidencia | `evidencias/mauricio/CP-M-009-uat-horario.png`, `evidencias/reportes/playwright-mauricio.json`, `evidencias/reportes/playwright-mauricio-html/` |
 
 ## Isaac: ruta professors y API de reseñas
 

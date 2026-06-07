@@ -21,7 +21,7 @@
 
 | ID | Título | Descripción | Severidad | Prioridad | Pasos para reproducir | Resultado esperado | Resultado actual | Evidencia | Estado | Responsable |
 |----|--------|-------------|-----------|-----------|------------------------|--------------------|------------------|-----------|--------|-------------|
-| Sin defectos registrados antes de la ejecución | No aplica | No aplica | No aplica | No aplica | No aplica | No aplica | No aplica | No aplica | No aplica | Todos |
+| Sin defectos registrados en las pruebas actuales | No aplica | Las pruebas CP-M-001 a CP-M-009 no evidenciaron defectos funcionales o bloqueantes en las rutas schedule y overview. | No aplica | No aplica | No aplica | No aplica | No aplica | Evidencias en `evidencias/mauricio/` y `evidencias/reportes/` | No aplica | Mauricio |
 
 ## Estados permitidos
 

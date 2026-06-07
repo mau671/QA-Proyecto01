@@ -76,8 +76,8 @@ El alcance se redujo para evitar sobrecargar el proyecto y concentrar el trabajo
 | Pruebas unitarias | Vitest | Funciones utilitarias y lógica aislada cuando aplique. |
 | Pruebas E2E | Playwright | Flujos principales de usuario. |
 | Pruebas de API | Postman + Newman | Endpoints de reseñas de profesores. |
-| Rendimiento | Lighthouse | Tiempo de carga y métricas web. |
-| Carga ligera | Apache JMeter | Simulación básica de concurrencia en flujos definidos. |
+| Rendimiento | Lighthouse + Performance | Tiempo de carga, métricas web y accesibilidad. |
+| Carga ligera | ApacheBench | Simulación básica de concurrencia en flujos definidos. |
 | Seguridad | Pruebas manuales + Postman | XSS, control de acceso, validaciones y manejo de sesión. |
 | Usabilidad | Lighthouse + checklist manual | Accesibilidad, navegación y claridad de interfaz. |
 
