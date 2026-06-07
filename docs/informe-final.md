@@ -68,15 +68,17 @@ Se aplicó una estrategia combinada de pruebas estáticas, dinámicas, funcional
 
 ## 7. Casos de prueba
 
-Se ejecutaron los casos `CP-M-001` a `CP-M-009` para las rutas schedule y overview. Los nueve casos fueron aprobados y cuentan con evidencia en capturas, reportes de herramientas y una ejecución Playwright aprobada.
+- Se ejecutaron los casos `CP-M-001` a `CP-M-009` para las rutas schedule y overview. Los nueve casos fueron aprobados y cuentan con evidencia en capturas, reportes de herramientas y una ejecución Playwright aprobada.
+- Se ejecutaron los casos `CP-A-001` a `CP-A-008` para las rutas auth, onboarding y curriculum. Los casos fueron aprobados, solo uno tuvo un defecto menor de error y todo se documentó con capturas.
 
 ## 8. Matriz de trazabilidad
 
-Los requisitos `RF-M1` y `RNF-M1` quedaron cubiertos por casos funcionales, integración, sistema, negativo, unitario, UAT, rendimiento y carga ligera. Ambos requisitos fueron aprobados en las pruebas ejecutadas a la fecha.
+- Los requisitos `RF-M1` y `RNF-M1` quedaron cubiertos por casos funcionales, integración, sistema, negativo, unitario, UAT, rendimiento y carga ligera. Ambos requisitos fueron aprobados en las pruebas ejecutadas a la fecha.
+- Los requisitos `RF-A1` y `RNF-A1` quedaron cubiertos. Ambos requisitos quedan aprobados en las pruebas ejecutadas anteriormente.
 
 ## 9. Gestión de defectos
 
-No se registraron defectos en las pruebas actuales. Los comportamientos observados en schedule y overview coincidieron con los resultados esperados.
+Se encuentra un defecto muy leve en la descripción de un error en `defectos.md`.
 
 ## 10. Resultados por módulo
 
@@ -94,15 +96,15 @@ Pendiente.
 
 ### Ruta auth: autenticación
 
-Pendiente.
+La autenticación funcionó correctamente, utilizando el usuario de demo probando diferentes casos: correo correcto, contraseña incorrecta, ambos incorrectos. Se verificó la respuesta de la API y devuelve correcta y descriptivamente los errores.
 
 ### Ruta onboarding: configuración inicial
 
-Pendiente.
+La ruta de onboarding se verificó con el usuario de demo@demo.com, que ya se encuentra con el onboarding completado. La redirección se ejecutó correctamente.
 
 ### Ruta curriculum: malla curricular
 
-Pendiente.
+Primeramente, Lighthouse devuelve 79 en performance, 94 en accesibilidad, 100 en mejores practicas y 100 en SEO, lo cual se consideran resultados satisfactorios. Con respecto a las pruebas realizadas, la ruta de curriculum devuelve correctamente los detalles de los cursos y cumplie con los estandares de accesibilidad.
 
 ## 11. Métricas
 

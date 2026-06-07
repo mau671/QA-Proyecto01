@@ -1,0 +1,9 @@
+curriculumSearchSchema se encuentra duplicado.
+
+src/routes/curriculum/index.tsx:4-9 y src/routes/curriculum/$courseId.tsx:4-9:
+const curriculumSearchSchema = z.object({
+  university: z.coerce.number().optional(),
+  campus: z.coerce.number().optional(),
+  career: z.coerce.number().optional(),
+  plan: z.coerce.number().optional(),
+});

@@ -5,6 +5,7 @@
   "scripts": {
     "test:playwright": "playwright test",
     "test:playwright:mauricio": "playwright test tests/playwright/mauricio-schedule.spec.ts",
+    "test:playwright:armando": "playwright test --config=playwright.armando.config.ts",
     "test:vitest": "vitest run",
     "test:vitest:mauricio": "vitest run tests/vitest/calendar-utils.test.ts"
   },

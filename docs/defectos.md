@@ -22,6 +22,7 @@
 | ID | Título | Descripción | Severidad | Prioridad | Pasos para reproducir | Resultado esperado | Resultado actual | Evidencia | Estado | Responsable |
 |----|--------|-------------|-----------|-----------|------------------------|--------------------|------------------|-----------|--------|-------------|
 | Sin defectos registrados en las pruebas actuales | No aplica | Las pruebas CP-M-001 a CP-M-009 no evidenciaron defectos funcionales o bloqueantes en las rutas schedule y overview. | No aplica | No aplica | No aplica | No aplica | No aplica | Evidencias en `evidencias/mauricio/` y `evidencias/reportes/` | No aplica | Mauricio |
+| DEF-A-1 | Error incorrecto | La prueba de login con credenciales inválidas retorna que el correo no tiene un formato válido, lo cual no es el error. | Baja | Baja | En el inicio de sesión, ingresar un correo electrónico con formato correcto pero con la contraseña incorrecta. | Debería indicar que la contraseña es incorrecta o credenciales inválidas. | Muestra "El correo electrónico no tiene un formato válido." | `evidencias/armando/CP-A-002-login-invalido.png` | Abierto | Armando |
 
 ## Estados permitidos
 

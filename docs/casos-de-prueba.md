@@ -362,9 +362,9 @@
 | Datos de prueba | `demo@demo.com` / `pruebas1234` |
 | Pasos | 1. Abrir login. 2. Ingresar credenciales válidas. 3. Enviar formulario. |
 | Resultado esperado | El usuario accede a la aplicación autenticada. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | La aplicación permite acceder con credenciales válidas. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-001-login-valido.png` |
 
 ### CP-A-002: Login inválido
@@ -381,9 +381,9 @@
 | Datos de prueba | `demo@demo.com` / `123` |
 | Pasos | 1. Abrir login. 2. Ingresar credenciales inválidas. 3. Enviar formulario. |
 | Resultado esperado | La app rechaza el inicio de sesión y muestra mensaje claro. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Despliega un error: "No se pudo iniciar sesión, el correo electrónico no tiene un formato válido." |
+| Estado | Ejecutado |
+| Resultado | Aceptado con defecto |
 | Evidencia | `evidencias/armando/CP-A-002-login-invalido.png` |
 
 ### CP-A-003: Onboarding académico
@@ -400,9 +400,9 @@
 | Datos de prueba | Primera universidad, campus, carrera y plan disponibles si aparece onboarding. |
 | Pasos | 1. Iniciar sesión. 2. Si aparece onboarding, completarlo. 3. Si no aparece, verificar redirección válida. |
 | Resultado esperado | El usuario queda dentro de la aplicación con contexto académico válido. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | El usuario de demo@demo.com ya se encuentra con el onboarding completado. La redirección se ejecutó correctamente. |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/armando/CP-A-003-onboarding.png` |
 
 ### CP-A-004: Detalle de curso en la malla curricular
@@ -419,9 +419,9 @@
 | Datos de prueba | Primer curso visible en la ruta curriculum. |
 | Pasos | 1. Abrir la ruta curriculum. 2. Seleccionar primer curso visible. 3. Verificar detalle. |
 | Resultado esperado | Se muestra información del curso seleccionado. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Los cursos muestran correctamente los créditos, horas y el semestre al que corresponde. |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/armando/CP-A-004-detalle-curso.png` |
 
 ### CP-A-005: Navegación en máximo 3 clics
@@ -438,9 +438,9 @@
 | Datos de prueba | Ruta overview, ruta schedule, ruta curriculum y ruta professors. |
 | Pasos | 1. Desde aplicación autenticada, contar clics hacia cada sección. 2. Registrar resultados. |
 | Resultado esperado | Cada sección se alcanza en máximo 3 clics. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Ninguna sección se excedió de los 3 clics.  |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/armando/CP-A-005-navegacion.png` |
 
 ### CP-A-006: Accesibilidad en la malla curricular
@@ -457,9 +457,9 @@
 | Datos de prueba | Lighthouse en Chromium. |
 | Pasos | 1. Abrir la ruta curriculum. 2. Ejecutar Lighthouse. 3. Registrar puntuación. |
 | Resultado esperado | Accesibilidad ≥ 90. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | La accesibilidad arroja un resultado de 94. |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/reportes/lighthouse-curriculum.html` |
 
 ### CP-A-007: Aceptación de usuario de navegación autenticada
@@ -476,9 +476,9 @@
 | Datos de prueba | Ruta overview, ruta schedule, ruta curriculum y ruta professors. |
 | Pasos | 1. Iniciar sesión. 2. Ir a cada sección principal desde la navegación. 3. Confirmar que cada destino es claro y alcanzable. |
 | Resultado esperado | El usuario identifica y accede a las secciones principales sin confusión y en máximo 3 clics. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Todas las rutas son accesibles dentro de los márgenes con un usuario autenticado. |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/armando/CP-A-007-uat-navegacion.png` |
 
 ### CP-A-008: Control de acceso sin sesión
@@ -495,7 +495,7 @@
 | Datos de prueba | Rutas overview, schedule, curriculum y settings. |
 | Pasos | 1. Cerrar sesión o abrir navegador limpio. 2. Intentar acceder directamente a una ruta protegida. 3. Observar redirección o bloqueo. |
 | Resultado esperado | La aplicación redirige al login o bloquea el acceso a contenido protegido. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | En rutas protegidas de /settings y en el inicio, se despliegan los bloqueos correctamente. |
+| Estado | Ejecutado |
+| Resultado | Aceptado |
 | Evidencia | `evidencias/armando/CP-A-008-control-acceso.png` |

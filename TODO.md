@@ -3,7 +3,7 @@
 > **Líder:** Mauricio González  
 > **Aplicación:** Claustrum  
 > **Repositorio analizado:** [https://github.com/mau671/claustrum](https://github.com/mau671/claustrum)  
-> **Código local:** `/home/mau/Dev/horarios/`  
+> **Código local:** `~/Documents/claustrum`  
 > **Entrega:** 14 de junio
 
 ## Reglas de trabajo
@@ -91,23 +91,23 @@
 **Requisito funcional:** `RF-A1: El usuario puede iniciar sesión y completar el onboarding académico.`  
 **Requisito no funcional:** `RNF-A1: El usuario puede llegar a las rutas overview, schedule, curriculum y professors en máximo 3 clics desde la aplicación autenticada.`
 
-- [ ] Ejecutar `CP-A-001`: iniciar sesión con credenciales válidas.
-- [ ] Ejecutar `CP-A-002`: iniciar sesión con credenciales inválidas.
-- [ ] Ejecutar `CP-A-003`: completar o verificar flujo de onboarding.
-- [ ] Ejecutar `CP-A-004`: abrir la ruta curriculum y consultar detalle de curso.
-- [ ] Ejecutar `CP-A-005`: medir navegación en máximo 3 clics.
-- [ ] Ejecutar `CP-A-006`: revisar accesibilidad básica de la ruta curriculum con Lighthouse.
-- [ ] Ejecutar prueba de aceptación de usuario sobre navegación principal autenticada.
-- [ ] Ejecutar `CP-A-008`: validar control de acceso a rutas protegidas sin sesión.
-- [ ] Ejecutar revisión estática de `src/routes/auth/`.
-- [ ] Ejecutar revisión estática de `src/routes/onboarding/`.
-- [ ] Ejecutar revisión estática de `src/routes/curriculum/`.
-- [ ] Revisar legibilidad, modularidad, duplicación, complejidad, convenciones y código muerto en sus rutas asignadas.
-- [ ] Automatizar con Playwright el flujo `login: onboarding o curriculum: detalle de curso`.
-- [ ] Guardar evidencias de cada caso en `evidencias/armando/`.
-- [ ] Registrar defectos `DEF-A-*` si aparecen.
-- [ ] Actualizar resultados de `CP-A-001` a `CP-A-008`.
-- [ ] Redactar resultados de las rutas auth, onboarding y curriculum en `docs/informe-final.md`.
+- [X] Ejecutar `CP-A-001`: iniciar sesión con credenciales válidas.
+- [X] Ejecutar `CP-A-002`: iniciar sesión con credenciales inválidas.
+- [X] Ejecutar `CP-A-003`: completar o verificar flujo de onboarding.
+- [X] Ejecutar `CP-A-004`: abrir la ruta curriculum y consultar detalle de curso.
+- [X] Ejecutar `CP-A-005`: medir navegación en máximo 3 clics.
+- [X] Ejecutar `CP-A-006`: revisar accesibilidad básica de la ruta curriculum con Lighthouse.
+- [X] Ejecutar prueba de aceptación de usuario sobre navegación principal autenticada.
+- [X] Ejecutar `CP-A-008`: validar control de acceso a rutas protegidas sin sesión.
+- [X] Ejecutar revisión estática de `src/routes/auth/`.
+- [X] Ejecutar revisión estática de `src/routes/onboarding/`.
+- [X] Ejecutar revisión estática de `src/routes/curriculum/`.
+- [X] Revisar legibilidad, modularidad, duplicación, complejidad, convenciones y código muerto en sus rutas asignadas.
+- [X] Automatizar con Playwright el flujo `login: onboarding o curriculum: detalle de curso`.
+- [X] Guardar evidencias de cada caso en `evidencias/armando/`.
+- [X] Registrar defectos `DEF-A-*` si aparecen.
+- [X] Actualizar resultados de `CP-A-001` a `CP-A-008`.
+- [X] Redactar resultados de las rutas auth, onboarding y curriculum en `docs/informe-final.md`.
 
 ## Trabajo final de todos
 

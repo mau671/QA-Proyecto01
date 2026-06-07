@@ -1,0 +1,24 @@
+Comando ejecutado:
+  cd ~/Documents/claustrum
+  npx oxlint src/routes/auth/ src/routes/onboarding/ src/routes/curriculum/
+
+Hallazgos:
+
+⚠ react-hooks(exhaustive-deps): React hook useEffect depends on `plans`, which changes every render
+    ╭─[src/routes/curriculum/-curriculum-page.tsx:54:9]
+ 53 │   const academicUnits = academicUnitsQuery.data ?? [];
+ 54 │   const plans = plansQuery.data ?? [];
+    ·         ──┬──
+    ·           ╰── `plans` is declared here
+ 55 │ 
+    ╰────
+     ╭─[src/routes/curriculum/-curriculum-page.tsx:254:17]
+ 253 │     });
+ 254 │   }, [navigate, plans, plansQuery.isFetching, search, selectedAcademicUnitId, selectedPlanId]);
+     ·                 ──┬──
+     ·                   ╰── it will always cause this hook to re-evaluate
+ 255 │ 
+     ╰────
+
+Resumen:
+  - 1 advertencia relevante (curriculum/-curriculum-page.tsx).
