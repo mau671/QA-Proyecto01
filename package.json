@@ -6,11 +6,13 @@
     "test:playwright": "playwright test",
     "test:playwright:mauricio": "playwright test tests/playwright/mauricio-schedule.spec.ts",
     "test:playwright:armando": "playwright test --config=playwright.armando.config.ts",
+    "test:playwright:isaac": "playwright test --config=playwright.isaac.config.ts",
     "test:vitest": "vitest run",
     "test:vitest:mauricio": "vitest run tests/vitest/calendar-utils.test.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.2",
     "vitest": "^4.1.8"
   },
   "packageManager": "pnpm@11.5.2"

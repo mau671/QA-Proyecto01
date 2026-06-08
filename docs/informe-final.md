@@ -70,11 +70,15 @@ Se aplicó una estrategia combinada de pruebas estáticas, dinámicas, funcional
 
 - Se ejecutaron los casos `CP-M-001` a `CP-M-009` para las rutas schedule y overview. Los nueve casos fueron aprobados y cuentan con evidencia en capturas, reportes de herramientas y una ejecución Playwright aprobada.
 - Se ejecutaron los casos `CP-A-001` a `CP-A-008` para las rutas auth, onboarding y curriculum. Los casos fueron aprobados, solo uno tuvo un defecto menor de error y todo se documentó con capturas.
+- Se ejecutaron los casos `CP-I-001` a `CP-I-008` para la ruta professors y la API de reseñas. Se aprobaron los casos de búsqueda, consulta de reseñas, validación de campos vacíos, XSS, SQL Injection y API con Newman. Los casos de envío de reseña válida y aceptación de usuario fallaron por el defecto `DEF-I-001`.
 
 ## 8. Matriz de trazabilidad
 
 - Los requisitos `RF-M1` y `RNF-M1` quedaron cubiertos por casos funcionales, integración, sistema, negativo, unitario, UAT, rendimiento y carga ligera. Ambos requisitos fueron aprobados en las pruebas ejecutadas a la fecha.
 - Los requisitos `RF-A1` y `RNF-A1` quedaron cubiertos. Ambos requisitos quedan aprobados en las pruebas ejecutadas anteriormente.
+- El requisito `RF-I1` quedó cubierto por casos funcionales, negativos, API y UAT. El requisito queda fallido porque el envío de reseña válida no se completa correctamente.
+- El requisito `RNF-I1` quedó cubierto por pruebas de seguridad y API. El requisito queda aprobado porque las entradas XSS y SQL Injection no se ejecutaron ni expusieron errores técnicos.
+
 
 ## 9. Gestión de defectos
 
@@ -92,7 +96,13 @@ La ruta overview cargó correctamente para el usuario autenticado. La traza de P
 
 ### Ruta professors: reseñas de profesores
 
-Pendiente.
+La ruta professors permitió consultar la lista de profesores, abrir el detalle del profesor `CORDERO QUIROS MARCIAL` y visualizar métricas generales como calidad general, facilidad, calidad, porcentaje de estudiantes que lo llevarían otra vez, etiquetas destacadas y reseñas existentes. En la consulta de reseñas se observaron datos como fecha, curso asociado, comentario, calificaciones, etiquetas, estado aprobado y conteos de interacción.
+
+El formulario de reseña se abrió correctamente desde el botón `Escribir reseña`. La aplicación rechazó adecuadamente el envío con campos obligatorios vacíos mediante el mensaje `Revisa los datos del formulario y vuelve a intentar.` También rechazó una entrada XSS con `<script>alert('xss')</script>` sin ejecutar ningún script en el navegador.
+
+Sin embargo, al completar una reseña con datos válidos, la aplicación rechazó el envío con el mensaje `Invalid review payload`. Este comportamiento impide completar el flujo funcional de envío de reseña y afecta directamente el requisito `RF-I1`. El hallazgo se registró como `DEF-I-001`.
+
+La API de reseñas se validó mediante Newman contra endpoints reales de Supabase RPC. Se ejecutaron 4 solicitudes y 14 aserciones sin fallos, cubriendo resumen de reseñas, reseñas públicas aprobadas, entrada SQL Injection y entrada XSS. La automatización Playwright verificó correctamente el inicio de sesión, acceso al detalle del profesor y apertura del formulario de reseña.
 
 ### Ruta auth: autenticación
 
@@ -115,27 +125,37 @@ Primeramente, Lighthouse devuelve 79 en performance, 94 en accesibilidad, 100 en
 | Cobertura de pruebas | 4 pruebas unitarias de lógica de calendario y 1 flujo Playwright aprobado | Aprobado para rutas evaluadas |
 | Tiempo de carga del panel de resumen | LCP de 1633 ms en Performance | Aprobado |
 | Accesibilidad Lighthouse | 100 en ruta overview | Aprobado |
-| Seguridad de entradas | Pendiente | Pendiente |
+|Seguridad de entradas | XSS y SQL Injection rechazados o tratados como texto; Newman ejecutó 14 aserciones sin fallos | Aprobado |
 
 ## 12. Evaluación de deuda técnica
 
 En las pruebas actuales no se observaron defectos bloqueantes. La revisión estática con oxlint no reportó hallazgos en los componentes schedule, calendar ni en `calendar-utils.ts`. Como deuda técnica potencial queda revisar oportunidades de optimización de renderizado, ya que la traza atribuye la mayor parte del LCP a demora de renderizado.
 
+Para el módulo professors no se contó con acceso directo al código fuente de Claustrum, por lo que la revisión estática se limitó a los artefactos disponibles en el repositorio QA, la colección Newman, los reportes generados y el comportamiento observable de la aplicación desplegada. Como deuda técnica funcional se identifica la necesidad de mejorar la validación del formulario de reseñas, ya que el mensaje `Invalid review payload` no indica el campo específico que causa el rechazo.
+
 ## 13. Análisis de riesgos
 
 El riesgo principal es depender de datos externos o cambiantes del periodo académico: si cambian cursos, grupos o disponibilidad, las pruebas E2E pueden requerir actualización de datos. También existe riesgo de que el flujo de guardado dependa del usuario demo y de horarios previamente almacenados.
+
+En la ruta professors existe el riesgo de que el flujo de envío de reseñas no pueda ser utilizado por estudiantes aunque el formulario permita completar datos válidos. También existe riesgo de mantenibilidad en las pruebas API si cambian los endpoints RPC de Supabase o los nombres de parámetros utilizados por la aplicación.
 
 ## 14. Análisis de resultados
 
 Los resultados muestran que el flujo principal del creador de horarios funciona de forma estable para usuario autenticado. La persistencia de horarios se validó manualmente, la lógica de calendario se cubrió con pruebas unitarias y la ruta overview cumplió el objetivo de carga observado.
 
+En el módulo professors, los resultados muestran que la consulta de información y reseñas funciona correctamente, pero el envío de reseñas presenta un fallo funcional. Las pruebas de seguridad no evidenciaron ejecución de XSS, exposición de errores SQL ni errores internos ante entradas maliciosas. La API pública de consulta respondió correctamente a las pruebas automatizadas con Newman.
+
 ## 15. Conclusiones
 
 En las pruebas ejecutadas a la fecha, Claustrum cumple los requisitos evaluados: creación, guardado y carga de horarios, manejo preventivo de conflictos y carga aceptable del panel de resumen.
 
+Para la ruta professors, Claustrum cumple parcialmente el requisito funcional evaluado. La consulta de profesores y reseñas funciona, pero el envío de una reseña válida no se completa debido al error `Invalid review payload`. El requisito no funcional de seguridad de entradas se considera aprobado para los escenarios probados, ya que no se ejecutaron payloads XSS ni se observaron errores SQL expuestos.
+
 ## 16. Recomendaciones
 
 Mantener datos de prueba estables para automatización E2E, ejecutar periódicamente la traza de Performance en overview y revisar la demora de renderizado detectada en el desglose de LCP.
+
+Corregir la validación del envío de reseñas para que los datos válidos sean aceptados o queden pendientes de aprobación. Además, reemplazar el mensaje genérico `Invalid review payload` por mensajes específicos por campo, de modo que el usuario pueda identificar si el problema está en curso, periodo, comentario, calificaciones, etiquetas u otro dato requerido. Mantener la colección Newman actualizada con los endpoints reales de Supabase RPC utilizados por la aplicación.
 
 ## 17. Anexos
 
