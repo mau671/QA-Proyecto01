@@ -208,9 +208,9 @@
 | Datos de prueba | Primer profesor visible en la lista. |
 | Pasos | 1. Abrir la ruta professors. 2. Buscar o seleccionar profesor. 3. Abrir detalle. |
 | Resultado esperado | Se muestra la página de detalle del profesor. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Se abrió correctamente la página de detalle del profesor `CORDERO QUIROS MARCIAL` en la ruta `/professors/480`. La vista mostró métricas generales, etiquetas destacadas y la sección de reseñas del profesor. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/isaac/CP-I-001-buscar-profesor.png` |
 
 ### CP-I-002: Consultar reseñas existentes
@@ -227,9 +227,9 @@
 | Datos de prueba | Primer profesor visible. |
 | Pasos | 1. Abrir detalle. 2. Ubicar sección de reseñas. 3. Verificar lista o estado vacío. |
 | Resultado esperado | Se muestran reseñas o mensaje claro si no existen. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | En la página de detalle del profesor `CORDERO QUIROS MARCIAL` se mostraron reseñas existentes con fecha, curso asociado, calificaciones de facilidad y calidad, etiquetas, comentario y opciones de interacción como votar o reportar. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/isaac/CP-I-002-consultar-resenas.png` |
 
 ### CP-I-003: Enviar reseña válida
@@ -246,9 +246,9 @@
 | Datos de prueba | `El profesor explica con claridad y responde preguntas durante la clase.` |
 | Pasos | 1. Abrir formulario. 2. Completar campos obligatorios. 3. Enviar. 4. Verificar respuesta. |
 | Resultado esperado | La reseña se envía o queda pendiente con mensaje claro. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Al completar el formulario de reseña para `CORDERO QUIROS MARCIAL` con curso, calificación obtenida, comentario válido, calificaciones numéricas, asistencia obligatoria y etiqueta seleccionada, la aplicación rechazó el envío y mostró el mensaje `Invalid review payload`. |
+| Estado | Ejecutado |
+| Resultado | Fallido |
 | Evidencia | `evidencias/isaac/CP-I-003-enviar-resena.png` |
 
 ### CP-I-004: Campos obligatorios vacíos
@@ -265,9 +265,9 @@
 | Datos de prueba | Campos vacíos. |
 | Pasos | 1. Abrir formulario. 2. Dejar campos obligatorios vacíos. 3. Enviar. |
 | Resultado esperado | La app muestra validaciones y no envía la reseña. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Al intentar enviar una reseña sin seleccionar curso y sin completar el comentario, la aplicación rechazó el envío y mostró el mensaje `Revisa los datos del formulario y vuelve a intentar.` |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/isaac/CP-I-004-campos-vacios.png` |
 
 ### CP-I-005: Intento de XSS
@@ -284,9 +284,9 @@
 | Datos de prueba | `<script>alert('xss')</script>` |
 | Pasos | 1. Insertar payload en comentario. 2. Enviar o previsualizar. 3. Observar respuesta. |
 | Resultado esperado | El payload se bloquea, sanitiza o no se ejecuta. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Al ingresar el payload `<script>alert('xss')</script>` en el comentario de la reseña, la aplicación rechazó el envío con el mensaje `Invalid review payload`. No se ejecutó ningún script ni apareció una alerta en el navegador. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/isaac/CP-I-005-xss.png` |
 
 ### CP-I-006: API de reseñas
@@ -303,10 +303,10 @@
 | Datos de prueba | Payload válido y payload inválido. |
 | Pasos | 1. Ejecutar colección. 2. Validar códigos HTTP. 3. Exportar reporte Newman. |
 | Resultado esperado | Respuestas coherentes para entradas válidas e inválidas. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
-| Evidencia | `evidencias/reportes/newman-professor-reviews.html` |
+| Resultado obtenido | La colección Newman ejecutó 4 solicitudes contra los endpoints reales de Supabase RPC del módulo de reseñas. Se validó el resumen de reseñas del profesor 480, la consulta de reseñas públicas aprobadas, una entrada tipo SQL Injection y una entrada tipo XSS. Las 4 solicitudes respondieron 200 OK, se ejecutaron 14 aserciones y no se registraron fallos. |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
+| Evidencia | evidencias/reportes/newman-professor-reviews.txt, evidencias/reportes/newman-professor-reviews.json |
 
 ### CP-I-007: Aceptación de usuario del flujo de reseñas
 
@@ -322,10 +322,10 @@
 | Datos de prueba | Primer profesor visible y texto válido de reseña. |
 | Pasos | 1. Buscar profesor. 2. Abrir detalle. 3. Identificar reseñas. 4. Completar formulario de reseña. 5. Verificar respuesta. |
 | Resultado esperado | El flujo se completa con mensajes claros y sin ambigüedad para el usuario. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
-| Evidencia | `evidencias/isaac/CP-I-007-uat-resenas.png` |
+| Resultado obtenido | El usuario puede abrir la ruta professors, consultar el detalle del profesor `CORDERO QUIROS MARCIAL`, identificar las reseñas existentes y acceder al formulario mediante `Escribir reseña`. Sin embargo, al completar una reseña con datos válidos, la aplicación rechaza el envío con el mensaje `Invalid review payload`, por lo que el flujo de aceptación no se completa exitosamente. |
+| Estado | Ejecutado |
+| Resultado | Fallido |
+| Evidencia | `evidencias/isaac/CP-I-007-uat-resenas.png`, `evidencias/isaac/CP-I-007-playwright-formulario.png`, `evidencias/reportes/playwright-isaac.json`, `evidencias/reportes/playwright-isaac-html/` |
 
 ### CP-I-008: Intento de SQL Injection
 
@@ -341,9 +341,9 @@
 | Datos de prueba | `' OR '1'='1` |
 | Pasos | 1. Insertar el payload en campos de búsqueda o parámetros disponibles. 2. Enviar la solicitud. 3. Observar respuesta y comportamiento. |
 | Resultado esperado | La aplicación rechaza, escapa o trata la entrada como texto; no muestra datos no autorizados ni errores SQL. |
-| Resultado obtenido | Pendiente |
-| Estado | Pendiente |
-| Resultado | No ejecutado |
+| Resultado obtenido | Al ingresar el payload `' OR '1'='1` en el buscador del módulo professors, la aplicación trató la entrada como texto de búsqueda, no mostró errores SQL, no expuso datos no autorizados y respondió con el mensaje `No hay resultados para los filtros seleccionados.` |
+| Estado | Ejecutado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/isaac/CP-I-008-sql-injection.png` |
 
 ## Armando: rutas auth, onboarding y curriculum

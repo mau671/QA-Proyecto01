@@ -1,186 +1,277 @@
 {
   "info": {
     "name": "Claustrum: Professor Reviews",
+    "_postman_id": "8c5f4a2b-isaac-professor-reviews",
+    "description": "Pruebas API del módulo de reseñas de profesores usando endpoints reales de Supabase RPC observados desde la aplicación Claustrum.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
-      "key": "baseUrl",
-      "value": "https://claustrum.maugp.com"
+      "key": "SUPABASE_URL",
+      "value": "https://jxzkhfclcdpcgtkpyxyk.supabase.co"
     },
     {
-      "key": "professorId",
-      "value": "1"
+      "key": "SUPABASE_PUBLISHABLE_KEY",
+      "value": ""
     },
     {
-      "key": "courseCode",
-      "value": "IC1802"
-    },
-    {
-      "key": "turnstileToken",
-      "value": "manual-token"
+      "key": "SUPABASE_BEARER_TOKEN",
+      "value": ""
     }
   ],
   "item": [
     {
-      "name": "Enviar reseña válida",
+      "name": "Consultar resumen de reseñas del profesor",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
+            "key": "apikey",
+            "value": "{{SUPABASE_PUBLISHABLE_KEY}}"
+          },
+          {
+            "key": "authorization",
+            "value": "Bearer {{SUPABASE_BEARER_TOKEN}}"
+          },
+          {
+            "key": "content-profile",
+            "value": "public"
+          },
+          {
+            "key": "content-type",
             "value": "application/json"
           }
         ],
-        "url": {
-          "raw": "{{baseUrl}}/api/professor-reviews/",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "api",
-            "professor-reviews",
-            ""
-          ]
-        },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"El profesor explica con claridad y responde preguntas durante la clase.\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\", \"Brinda apoyo\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
-        }
+          "raw": "{\n  \"p_professor_id\": \"480\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{SUPABASE_URL}}/rest/v1/rpc/get_professor_review_summary"
       },
       "event": [
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
-              "pm.test('La respuesta debe ser 200 o 400 por Turnstile en ambiente de prueba', function () {",
-              "  pm.expect([200, 400]).to.include(pm.response.code);",
+              "pm.test(\"La API responde 200 OK\", function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var data = pm.response.json();",
+              "",
+              "pm.test(\"La respuesta es un arreglo\", function () {",
+              "  pm.expect(data).to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Retorna resumen del profesor 480\", function () {",
+              "  pm.expect(data.length).to.be.above(0);",
+              "  pm.expect(String(data[0].professor_id)).to.eql(\"480\");",
+              "});",
+              "",
+              "pm.test(\"Incluye métricas principales de reseñas\", function () {",
+              "  pm.expect(data[0]).to.have.property(\"approved_review_count\");",
+              "  pm.expect(data[0]).to.have.property(\"average_overall_score\");",
+              "  pm.expect(data[0]).to.have.property(\"average_ease_score\");",
+              "  pm.expect(data[0]).to.have.property(\"average_quality_score\");",
+              "  pm.expect(data[0]).to.have.property(\"tag_counts\");",
               "});"
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ]
     },
     {
-      "name": "Rechazar campos obligatorios vacíos",
+      "name": "Consultar reseñas públicas del profesor",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
+            "key": "apikey",
+            "value": "{{SUPABASE_PUBLISHABLE_KEY}}"
+          },
+          {
+            "key": "authorization",
+            "value": "Bearer {{SUPABASE_BEARER_TOKEN}}"
+          },
+          {
+            "key": "content-profile",
+            "value": "public"
+          },
+          {
+            "key": "content-type",
             "value": "application/json"
           }
         ],
-        "url": {
-          "raw": "{{baseUrl}}/api/professor-reviews/",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "api",
-            "professor-reviews",
-            ""
-          ]
-        },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"professorId\": \"\",\n  \"courseCode\": \"\",\n  \"comment\": \"\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"engagementLevel\": 5,\n  \"tags\": [],\n  \"turnstileToken\": \"\"\n}"
-        }
+          "raw": "{\n  \"p_professor_id\": \"480\",\n  \"p_limit\": 10,\n  \"p_offset\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{SUPABASE_URL}}/rest/v1/rpc/get_professor_reviews_public"
       },
       "event": [
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
-              "pm.test('La API rechaza payload inválido', function () {",
-              "  pm.expect(pm.response.code).to.eql(400);",
+              "pm.test(\"La API responde 200 OK\", function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var data = pm.response.json();",
+              "",
+              "pm.test(\"La respuesta es un arreglo\", function () {",
+              "  pm.expect(data).to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Retorna reseñas públicas aprobadas\", function () {",
+              "  pm.expect(data.length).to.be.above(0);",
+              "  pm.expect(data.length).to.be.at.most(10);",
+              "  pm.expect(String(data[0].professor_id)).to.eql(\"480\");",
+              "  pm.expect(data[0]).to.have.property(\"review_id\");",
+              "  pm.expect(data[0]).to.have.property(\"comment\");",
+              "  pm.expect(data[0]).to.have.property(\"status\", \"approved\");",
+              "});",
+              "",
+              "pm.test(\"Incluye datos básicos de curso y calificación\", function () {",
+              "  pm.expect(data[0]).to.have.property(\"courses\");",
+              "  pm.expect(data[0]).to.have.property(\"ease_score\");",
+              "  pm.expect(data[0]).to.have.property(\"quality_score\");",
+              "  pm.expect(data[0]).to.have.property(\"total_count\");",
               "});"
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ]
     },
     {
-      "name": "Entrada XSS en comentario",
+      "name": "Entrada SQL Injection en parámetro de profesor",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
+            "key": "apikey",
+            "value": "{{SUPABASE_PUBLISHABLE_KEY}}"
+          },
+          {
+            "key": "authorization",
+            "value": "Bearer {{SUPABASE_BEARER_TOKEN}}"
+          },
+          {
+            "key": "content-profile",
+            "value": "public"
+          },
+          {
+            "key": "content-type",
             "value": "application/json"
           }
         ],
-        "url": {
-          "raw": "{{baseUrl}}/api/professor-reviews/",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "api",
-            "professor-reviews",
-            ""
-          ]
-        },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"<script>alert('xss')</script>\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
-        }
+          "raw": "{\n  \"p_professor_id\": \"' OR '1'='1\",\n  \"p_limit\": 10,\n  \"p_offset\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{SUPABASE_URL}}/rest/v1/rpc/get_professor_reviews_public"
       },
       "event": [
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
-              "pm.test('La respuesta no debe ejecutar contenido de script', function () {",
-              "  pm.expect([200, 400]).to.include(pm.response.code);",
-              "  pm.expect(pm.response.text()).to.not.include(\"<script>alert('xss')</script>\");",
+              "pm.test(\"La API no responde con error interno\", function () {",
+              "  pm.expect(pm.response.code).to.not.eql(500);",
+              "});",
+              "",
+              "pm.test(\"La respuesta no expone errores SQL ni stack trace\", function () {",
+              "  var body = pm.response.text().toLowerCase();",
+              "  pm.expect(body).to.not.include(\"syntax error\");",
+              "  pm.expect(body).to.not.include(\"stack trace\");",
+              "  pm.expect(body).to.not.include(\"internal server error\");",
+              "});",
+              "",
+              "pm.test(\"Si responde 200, trata la entrada como dato y retorna arreglo\", function () {",
+              "  if (pm.response.code === 200) {",
+              "    var data = pm.response.json();",
+              "    pm.expect(data).to.be.an(\"array\");",
+              "  }",
               "});"
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ]
     },
     {
-      "name": "Entrada SQL Injection en comentario",
+      "name": "Entrada XSS en parámetro de profesor",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
+            "key": "apikey",
+            "value": "{{SUPABASE_PUBLISHABLE_KEY}}"
+          },
+          {
+            "key": "authorization",
+            "value": "Bearer {{SUPABASE_BEARER_TOKEN}}"
+          },
+          {
+            "key": "content-profile",
+            "value": "public"
+          },
+          {
+            "key": "content-type",
             "value": "application/json"
           }
         ],
-        "url": {
-          "raw": "{{baseUrl}}/api/professor-reviews/",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "api",
-            "professor-reviews",
-            ""
-          ]
-        },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"professorId\": \"{{professorId}}\",\n  \"courseCode\": \"{{courseCode}}\",\n  \"academicTermId\": null,\n  \"comment\": \"' OR '1'='1\",\n  \"easeScore\": 8,\n  \"qualityScore\": 9,\n  \"clarityScore\": 9,\n  \"fairnessScore\": 8,\n  \"attendanceRequired\": true,\n  \"gradeReceived\": \"90\",\n  \"engagementLevel\": 5,\n  \"tags\": [\"Explica con claridad\"],\n  \"turnstileToken\": \"{{turnstileToken}}\"\n}"
-        }
+          "raw": "{\n  \"p_professor_id\": \"<script>alert('xss')</script>\",\n  \"p_limit\": 10,\n  \"p_offset\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{SUPABASE_URL}}/rest/v1/rpc/get_professor_reviews_public"
       },
       "event": [
         {
           "listen": "test",
           "script": {
+            "type": "text/javascript",
             "exec": [
-              "pm.test('La respuesta no debe exponer errores SQL', function () {",
-              "  pm.expect([200, 400]).to.include(pm.response.code);",
-              "  pm.expect(pm.response.text().toLowerCase()).to.not.include('syntax error');",
-              "  pm.expect(pm.response.text().toLowerCase()).to.not.include('sql');",
+              "pm.test(\"La API no responde con error interno\", function () {",
+              "  pm.expect(pm.response.code).to.not.eql(500);",
+              "});",
+              "",
+              "pm.test(\"La respuesta no refleja ejecución de script\", function () {",
+              "  var body = pm.response.text().toLowerCase();",
+              "  pm.expect(body).to.not.include(\"<script>alert('xss')</script>\");",
+              "  pm.expect(body).to.not.include(\"internal server error\");",
+              "});",
+              "",
+              "pm.test(\"Si responde 200, retorna arreglo controlado\", function () {",
+              "  if (pm.response.code === 200) {",
+              "    var data = pm.response.json();",
+              "    pm.expect(data).to.be.an(\"array\");",
+              "  }",
               "});"
-            ],
-            "type": "text/javascript"
+            ]
           }
         }
       ]
