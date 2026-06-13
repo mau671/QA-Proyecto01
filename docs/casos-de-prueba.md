@@ -381,9 +381,9 @@
 | Datos de prueba | `demo@demo.com` / `123` |
 | Pasos | 1. Abrir login. 2. Ingresar credenciales inválidas. 3. Enviar formulario. |
 | Resultado esperado | La app rechaza el inicio de sesión y muestra mensaje claro. |
-| Resultado obtenido | Despliega un error: "No se pudo iniciar sesión, el correo electrónico no tiene un formato válido." |
+| Resultado obtenido | La aplicación rechazó el inicio de sesión, pero mostró un mensaje incorrecto sobre el formato del correo electrónico. |
 | Estado | Ejecutado |
-| Resultado | Aceptado con defecto |
+| Resultado | Fallido |
 | Evidencia | `evidencias/armando/CP-A-002-login-invalido.png` |
 
 ### CP-A-003: Onboarding académico
@@ -402,7 +402,7 @@
 | Resultado esperado | El usuario queda dentro de la aplicación con contexto académico válido. |
 | Resultado obtenido | El usuario de demo@demo.com ya se encuentra con el onboarding completado. La redirección se ejecutó correctamente. |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-003-onboarding.png` |
 
 ### CP-A-004: Detalle de curso en la malla curricular
@@ -421,7 +421,7 @@
 | Resultado esperado | Se muestra información del curso seleccionado. |
 | Resultado obtenido | Los cursos muestran correctamente los créditos, horas y el semestre al que corresponde. |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-004-detalle-curso.png` |
 
 ### CP-A-005: Navegación en máximo 3 clics
@@ -440,7 +440,7 @@
 | Resultado esperado | Cada sección se alcanza en máximo 3 clics. |
 | Resultado obtenido | Ninguna sección se excedió de los 3 clics.  |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-005-navegacion.png` |
 
 ### CP-A-006: Accesibilidad en la malla curricular
@@ -459,7 +459,7 @@
 | Resultado esperado | Accesibilidad ≥ 90. |
 | Resultado obtenido | La accesibilidad arroja un resultado de 94. |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/reportes/lighthouse-curriculum.html` |
 
 ### CP-A-007: Aceptación de usuario de navegación autenticada
@@ -478,7 +478,7 @@
 | Resultado esperado | El usuario identifica y accede a las secciones principales sin confusión y en máximo 3 clics. |
 | Resultado obtenido | Todas las rutas son accesibles dentro de los márgenes con un usuario autenticado. |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-007-uat-navegacion.png` |
 
 ### CP-A-008: Control de acceso sin sesión
@@ -497,5 +497,5 @@
 | Resultado esperado | La aplicación redirige al login o bloquea el acceso a contenido protegido. |
 | Resultado obtenido | En rutas protegidas de /settings y en el inicio, se despliegan los bloqueos correctamente. |
 | Estado | Ejecutado |
-| Resultado | Aceptado |
+| Resultado | Aprobado |
 | Evidencia | `evidencias/armando/CP-A-008-control-acceso.png` |

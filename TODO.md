@@ -33,13 +33,13 @@
 
 ## Trabajo pendiente
 
-- [ ] Ejecutar casos de prueba definidos en `docs/casos-de-prueba.md`.
-- [ ] Guardar evidencias en `evidencias/`.
-- [ ] Registrar defectos reales en `docs/defectos.md`.
-- [ ] Actualizar resultados en `docs/casos-de-prueba.md`.
-- [ ] Actualizar resultados en `docs/matriz-de-trazabilidad.md`.
-- [ ] Completar resultados, análisis, conclusiones y recomendaciones en `docs/informe-final.md`.
-- [ ] Completar automatizaciones necesarias en `tests/playwright/` y `tests/newman/`.
+- [x] Ejecutar casos de prueba definidos en `docs/casos-de-prueba.md`.
+- [x] Guardar evidencias en `evidencias/`.
+- [x] Registrar defectos reales en `docs/defectos.md`.
+- [x] Actualizar resultados en `docs/casos-de-prueba.md`.
+- [x] Actualizar resultados en `docs/matriz-de-trazabilidad.md`.
+- [x] Completar resultados, análisis, conclusiones y recomendaciones en `docs/informe-final.md`.
+- [x] Completar automatizaciones necesarias en `tests/playwright/` y `tests/newman/`.
 
 ## Mauricio González: ruta schedule y ruta overview
 
@@ -69,22 +69,22 @@
 **Requisito funcional:** `RF-I1: El usuario puede consultar y enviar una reseña de profesor con los campos obligatorios.`  
 **Requisito no funcional:** `RNF-I1: El módulo de reseñas debe rechazar entradas maliciosas o inválidas.`
 
-- [ ] Ejecutar `CP-I-001`: buscar profesor y abrir detalle.
-- [ ] Ejecutar `CP-I-002`: consultar reseñas existentes de un profesor.
-- [ ] Ejecutar `CP-I-003`: enviar reseña válida.
-- [ ] Ejecutar `CP-I-004`: enviar reseña con campos obligatorios vacíos.
-- [ ] Ejecutar `CP-I-005`: intentar inyección XSS en comentario de reseña.
-- [ ] Ejecutar `CP-I-006`: probar endpoint de reseñas con Postman/Newman.
-- [ ] Ejecutar prueba de aceptación de usuario sobre consulta y envío de reseña.
-- [ ] Ejecutar `CP-I-008`: intentar SQL Injection en campos de búsqueda o parámetros disponibles del módulo de reseñas.
-- [ ] Ejecutar revisión estática de `workers/api/src/routes/professor-reviews.ts`.
-- [ ] Revisar validaciones en `src/lib/professor-reviews/`.
-- [ ] Revisar vulnerabilidades, duplicación, código muerto y dependencias relevantes del módulo de reseñas.
-- [ ] Ejecutar y ajustar la colección Newman de `tests/newman/professor-reviews.postman_collection.json` con datos reales.
-- [ ] Guardar evidencias de cada caso en `evidencias/isaac/`.
-- [ ] Registrar defectos `DEF-I-*` si aparecen.
-- [ ] Actualizar resultados de `CP-I-001` a `CP-I-008`.
-- [ ] Redactar resultados de la ruta professors y seguridad en `docs/informe-final.md`.
+- [x] Ejecutar `CP-I-001`: buscar profesor y abrir detalle.
+- [x] Ejecutar `CP-I-002`: consultar reseñas existentes de un profesor.
+- [x] Ejecutar `CP-I-003`: enviar reseña válida.
+- [x] Ejecutar `CP-I-004`: enviar reseña con campos obligatorios vacíos.
+- [x] Ejecutar `CP-I-005`: intentar inyección XSS en comentario de reseña.
+- [x] Ejecutar `CP-I-006`: probar endpoint de reseñas con Postman/Newman.
+- [x] Ejecutar prueba de aceptación de usuario sobre consulta y envío de reseña.
+- [x] Ejecutar `CP-I-008`: intentar SQL Injection en campos de búsqueda o parámetros disponibles del módulo de reseñas.
+- [x] Ejecutar revisión estática de `workers/api/src/routes/professor-reviews.ts`.
+- [x] Revisar validaciones en `src/lib/professor-reviews/`.
+- [x] Revisar vulnerabilidades, duplicación, código muerto y dependencias relevantes del módulo de reseñas.
+- [x] Ejecutar y ajustar la colección Newman de `tests/newman/professor-reviews.postman_collection.json` con datos reales.
+- [x] Guardar evidencias de cada caso en `evidencias/isaac/`.
+- [x] Registrar defectos `DEF-I-*` si aparecen.
+- [x] Actualizar resultados de `CP-I-001` a `CP-I-008`.
+- [x] Redactar resultados de la ruta professors y seguridad en `docs/informe-final.md`.
 
 ## Armando Castro: rutas auth, onboarding y curriculum
 
@@ -111,17 +111,17 @@
 
 ## Trabajo final de todos
 
-- [ ] Completar tabla final de métricas en `docs/informe-final.md`.
-- [ ] Completar análisis de deuda técnica en `docs/informe-final.md`.
-- [ ] Completar análisis de riesgos en `docs/informe-final.md`.
-- [ ] Completar conclusiones generales en `docs/informe-final.md`.
-- [ ] Completar recomendaciones en `docs/informe-final.md`.
-- [ ] Verificar que no quedan casos con estado `Pendiente` sin justificación.
-- [ ] Verificar que todo defecto tiene evidencia.
-- [ ] Verificar que todo requisito tiene al menos un caso asociado.
-- [ ] Verificar que todo caso aparece en la matriz de trazabilidad.
-- [ ] Preparar presentación del proyecto.
-- [ ] Hacer revisión final cruzada.
+- [x] Completar tabla final de métricas en `docs/informe-final.md`.
+- [x] Completar análisis de deuda técnica en `docs/informe-final.md`.
+- [x] Completar análisis de riesgos en `docs/informe-final.md`.
+- [x] Completar conclusiones generales en `docs/informe-final.md`.
+- [x] Completar recomendaciones en `docs/informe-final.md`.
+- [x] Verificar que no quedan casos con estado `Pendiente` sin justificación.
+- [x] Verificar que todo defecto tiene evidencia.
+- [x] Verificar que todo requisito tiene al menos un caso asociado.
+- [x] Verificar que todo caso aparece en la matriz de trazabilidad.
+- [x] Preparar presentación del proyecto.
+- [x] Hacer revisión final cruzada.
 
 ## Casos mínimos definidos
 

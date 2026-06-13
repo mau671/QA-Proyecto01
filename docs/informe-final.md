@@ -69,20 +69,20 @@ Se aplicó una estrategia combinada de pruebas estáticas, dinámicas, funcional
 ## 7. Casos de prueba
 
 - Se ejecutaron los casos `CP-M-001` a `CP-M-009` para las rutas schedule y overview. Los nueve casos fueron aprobados y cuentan con evidencia en capturas, reportes de herramientas y una ejecución Playwright aprobada.
-- Se ejecutaron los casos `CP-A-001` a `CP-A-008` para las rutas auth, onboarding y curriculum. Los casos fueron aprobados, solo uno tuvo un defecto menor de error y todo se documentó con capturas.
+- Se ejecutaron los casos `CP-A-001` a `CP-A-008` para las rutas auth, onboarding y curriculum. Siete casos fueron aprobados y `CP-A-002` falló por el defecto `DEF-A-001`; todo quedó documentado con capturas y trazabilidad.
 - Se ejecutaron los casos `CP-I-001` a `CP-I-008` para la ruta professors y la API de reseñas. Se aprobaron los casos de búsqueda, consulta de reseñas, validación de campos vacíos, XSS, SQL Injection y API con Newman. Los casos de envío de reseña válida y aceptación de usuario fallaron por el defecto `DEF-I-001`.
 
 ## 8. Matriz de trazabilidad
 
 - Los requisitos `RF-M1` y `RNF-M1` quedaron cubiertos por casos funcionales, integración, sistema, negativo, unitario, UAT, rendimiento y carga ligera. Ambos requisitos fueron aprobados en las pruebas ejecutadas a la fecha.
-- Los requisitos `RF-A1` y `RNF-A1` quedaron cubiertos. Ambos requisitos quedan aprobados en las pruebas ejecutadas anteriormente.
+- Los requisitos `RF-A1` y `RNF-A1` quedaron cubiertos. `RF-A1` presenta un defecto menor documentado en el mensaje de login (`DEF-A-001`), pero el flujo principal de autenticación y onboarding se completó correctamente.
 - El requisito `RF-I1` quedó cubierto por casos funcionales, negativos, API y UAT. El requisito queda fallido porque el envío de reseña válida no se completa correctamente.
 - El requisito `RNF-I1` quedó cubierto por pruebas de seguridad y API. El requisito queda aprobado porque las entradas XSS y SQL Injection no se ejecutaron ni expusieron errores técnicos.
 
 
 ## 9. Gestión de defectos
 
-Se encuentra un defecto muy leve en la descripción de un error en `defectos.md`.
+Se documentaron dos defectos: `DEF-A-001`, referente al mensaje incorrecto de inicio de sesión, y `DEF-I-001`, referente al rechazo del envío de una reseña válida con `Invalid review payload`.
 
 ## 10. Resultados por módulo
 
@@ -106,7 +106,7 @@ La API de reseñas se validó mediante Newman contra endpoints reales de Supabas
 
 ### Ruta auth: autenticación
 
-La autenticación funcionó correctamente, utilizando el usuario de demo probando diferentes casos: correo correcto, contraseña incorrecta, ambos incorrectos. Se verificó la respuesta de la API y devuelve correcta y descriptivamente los errores.
+La autenticación funcionó correctamente, utilizando el usuario de demo probando diferentes casos: correo correcto, contraseña incorrecta, ambos incorrectos. Se verificó la respuesta de la API; como hallazgo menor, la validación de credenciales inválidas devuelve un mensaje incorrecto sobre el formato del correo, documentado como `DEF-A-001`.
 
 ### Ruta onboarding: configuración inicial
 
@@ -114,7 +114,7 @@ La ruta de onboarding se verificó con el usuario de demo@demo.com, que ya se en
 
 ### Ruta curriculum: malla curricular
 
-Primeramente, Lighthouse devuelve 79 en performance, 94 en accesibilidad, 100 en mejores practicas y 100 en SEO, lo cual se consideran resultados satisfactorios. Con respecto a las pruebas realizadas, la ruta de curriculum devuelve correctamente los detalles de los cursos y cumplie con los estandares de accesibilidad.
+Primeramente, Lighthouse devuelve 79 en performance, 94 en accesibilidad, 100 en mejores practicas y 100 en SEO, lo cual se considera un resultado satisfactorio. Con respecto a las pruebas realizadas, la ruta de curriculum devuelve correctamente los detalles de los cursos y cumple con los estandares de accesibilidad.
 
 ## 11. Métricas
 
@@ -125,11 +125,11 @@ Primeramente, Lighthouse devuelve 79 en performance, 94 en accesibilidad, 100 en
 | Cobertura de pruebas | 4 pruebas unitarias de lógica de calendario y 1 flujo Playwright aprobado | Aprobado para rutas evaluadas |
 | Tiempo de carga del panel de resumen | LCP de 1633 ms en Performance | Aprobado |
 | Accesibilidad Lighthouse | 100 en ruta overview | Aprobado |
-|Seguridad de entradas | XSS y SQL Injection rechazados o tratados como texto; Newman ejecutó 14 aserciones sin fallos | Aprobado |
+| Seguridad de entradas | XSS y SQL Injection rechazados o tratados como texto; Newman ejecutó 14 aserciones sin fallos | Aprobado |
 
 ## 12. Evaluación de deuda técnica
 
-En las pruebas actuales no se observaron defectos bloqueantes. La revisión estática con oxlint no reportó hallazgos en los componentes schedule, calendar ni en `calendar-utils.ts`. Como deuda técnica potencial queda revisar oportunidades de optimización de renderizado, ya que la traza atribuye la mayor parte del LCP a demora de renderizado.
+En las pruebas actuales no se observaron defectos bloqueantes. La revisión estática con oxlint no reportó hallazgos en los componentes schedule, calendar ni en `calendar-utils.ts`. Como deuda técnica potencial queda revisar oportunidades de optimización de renderizado, ya que la traza atribuye la mayor parte del LCP a demora de renderizado. También quedó pendiente mejorar el mensaje de validación de login y la validación del formulario de reseñas.
 
 Para el módulo professors no se contó con acceso directo al código fuente de Claustrum, por lo que la revisión estática se limitó a los artefactos disponibles en el repositorio QA, la colección Newman, los reportes generados y el comportamiento observable de la aplicación desplegada. Como deuda técnica funcional se identifica la necesidad de mejorar la validación del formulario de reseñas, ya que el mensaje `Invalid review payload` no indica el campo específico que causa el rechazo.
 
@@ -147,7 +147,7 @@ En el módulo professors, los resultados muestran que la consulta de informació
 
 ## 15. Conclusiones
 
-En las pruebas ejecutadas a la fecha, Claustrum cumple los requisitos evaluados: creación, guardado y carga de horarios, manejo preventivo de conflictos y carga aceptable del panel de resumen.
+En las pruebas ejecutadas a la fecha, Claustrum cumple los requisitos evaluados de horarios y rendimiento del panel de resumen. La autenticación y el onboarding funcionan, aunque existe un defecto menor documentado en el mensaje de login.
 
 Para la ruta professors, Claustrum cumple parcialmente el requisito funcional evaluado. La consulta de profesores y reseñas funciona, pero el envío de una reseña válida no se completa debido al error `Invalid review payload`. El requisito no funcional de seguridad de entradas se considera aprobado para los escenarios probados, ya que no se ejecutaron payloads XSS ni se observaron errores SQL expuestos.
 

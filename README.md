@@ -10,7 +10,7 @@ Escuela de Ingeniería en Computación
 
 ## Integrantes
 
-- Mauricio González Prendas: 2024143009 (líder)
+- Mauricio González Prendas: 2024143009
 - Isaac Jiménez Blanco: 2024202804
 - Armando Castro Palma: 2023219038
 

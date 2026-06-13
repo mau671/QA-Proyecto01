@@ -6,7 +6,7 @@
 | RNF-M1 | El panel de resumen debe cargar en menos de 2 segundos en una conexión normal. | CP-M-005, CP-M-007 | Rendimiento, carga | Aprobado | N/A | Mauricio |
 | RF-I1 | El usuario puede consultar y enviar una reseña de profesor con los campos obligatorios. | CP-I-001, CP-I-002, CP-I-003, CP-I-004, CP-I-006, CP-I-007 | Funcional, negativo, API, UAT | Fallido | DEF-I-001 | Isaac |
 | RNF-I1 | El módulo de reseñas debe rechazar entradas maliciosas o inválidas. | CP-I-005, CP-I-006, CP-I-008 | Seguridad, API | Aprobado | N/A | Isaac |
-| RF-A1 | El usuario puede iniciar sesión y completar el onboarding académico. | CP-A-001, CP-A-002, CP-A-003, CP-A-008 | Funcional, negativo, integración, seguridad | Aprobado | DEF-A-1 | Armando |
+| RF-A1 | El usuario puede iniciar sesión y completar el onboarding académico. | CP-A-001, CP-A-002, CP-A-003, CP-A-008 | Funcional, negativo, integración, seguridad | Aprobado | DEF-A-001 | Armando |
 | RNF-A1 | El usuario puede llegar a las rutas overview, schedule, curriculum y professors en máximo 3 clics desde la aplicación autenticada. | CP-A-004, CP-A-005, CP-A-006, CP-A-007 | Funcional, usabilidad, accesibilidad, UAT | Aprobado | N/A | Armando |
 
 ## Criterio de actualización durante la ejecución
